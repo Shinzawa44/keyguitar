@@ -65,6 +65,21 @@
 		if head < 0 : head = codelineMax-4
 		gosub *mesback
 	}
+	if k = 'Q' : gosub *downkey
+	if k = 'W' : gosub *upkey
+	return
+	
+*downkey
+	; キーを下げる
+	repeat length(codeline)
+		codeline(cnt) --
+	loop
+	return
+*upkey
+	; キーを上げる
+	repeat length(codeline)
+		codeline(cnt) ++
+	loop
 	return
 	
 *next4play
