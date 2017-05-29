@@ -4,6 +4,8 @@
 
 *codeload
 	; 音源読み込み
+	dir = dir_cur
+	chdir dir+"\\string1" ; 音源のディレクトリ
 	dirlist wavlist,"*.wav",1
 	wavnmb = stat
 	mes wavlist
@@ -15,6 +17,8 @@
 		ds_load wavname(cnt),cnt
 		codeHashPush strmid(lit(0),3,5),cnt
 	loop
+	
+	chdir dir ; 元のディレクトリ
 	return
 	
 *codeset
@@ -42,51 +46,6 @@
 	codelineMax = length(codeline)
 	head = 0
 	return
-/*
-#deffunc codesetting var p1,int p2,local b1,local b2,local b3,local b4
-	; 楽譜解釈
-	; ルート
-	; シャープ化
-	; 和音のタイプ：m,dim,aug
-	; ７音化
-	b2 = strmid(p1,b1,1)
-	if b2 = "_" {
-		b2 = strmid(p1,b1,2)
-		b1 ++
-	}
-	b1 ++
-	b4 = codeHashPull(b2)
-	codeline0(p2) = b4
-	b3 = strmid(p1,b1,1)
-	if b3 = "s" {
-		codeline0(p2) ++
-		b1 ++
-	}
-	b3 = strmid(p1,b1,1)
-	codeline1(p2) = b4+4
-	codeline2(p2) = b4+7
-	codeline3(p2) = -1
-	if b3 = "m" {
-		codeline1(p2) = b4+3
-		codeline2(p2) = b4+7
-		b1 ++
-	}
-	if b3 = "d" {
-		codeline1(p2) = b4+3
-		codeline2(p2) = b4+7
-		b1 += 3
-	}
-	else : if b3 = "a" {
-		codeline1(p2) = b4+4
-		codeline2(p2) = b4+8
-		b1 += 3
-	}
-	b3 = strmid(p1,b1,1)
-	if b3 = "7" {
-		codeline3(p2) = b4+12
-	}
-	return
-	//*/
 	
 *playkey
 	k = iparam
@@ -134,69 +93,6 @@
 	if top >= 0 : ds_play top
 	head = (head+4)\codelineMax
 	return
-	/*
-	/*
-*nextplay
-	; 楽譜の進行
-	; 音を鳴らす
-	ds_play codeline0(head)
-	await 2
-	ds_play codeline1(head)
-	await 2
-	ds_play codeline2(head)
-	if codeline3(head) >= 0 {
-		await 2
-		ds_play codeline3(head)
-	}
-	gosub *mesback ; メッセージ
-	head = (head+1)\codelineMax
-	return
-*next3root
-	; 楽譜の進行
-	; 第１回転音を鳴らす
-	ds_play codeline0(head)+12
-	await 2
-	ds_play codeline1(head)
-	await 2
-	ds_play codeline2(head)
-	if codeline3(head) >= 0 {
-		await 2
-		ds_play codeline3(head)
-	}
-	gosub *mesback ; メッセージ
-	head = (head+1)\codelineMax
-	return
-*next5root
-	; 楽譜の進行
-	; 第２回転音を鳴らす
-	ds_play codeline0(head)+12
-	await 2
-	ds_play codeline1(head)+12
-	await 2
-	ds_play codeline2(head)
-	if codeline3(head) >= 0 {
-		await 2
-		ds_play codeline3(head)
-	}
-	gosub *mesback ; メッセージ
-	head = (head+1)\codelineMax
-	return
-*nextminus
-	; 楽譜の進行
-	; ???を鳴らす
-	ds_play codeline0(head)
-	await 2
-	ds_play codeline1(head)
-	await 2
-	ds_play codeline2(head)
-	if codeline3(head) >= 0 {
-		await 2
-		ds_play codeline3(head)-12
-	}
-	gosub *mesback ; メッセージ
-	head = (head+1)\codelineMax
-	return
-	//*/
 	
 *mesback
 	; メッセージ
@@ -209,13 +105,6 @@
 	mes "  "+codeline(head+1)
 	mes "  "+codeline(head+2)
 	mes "  "+codeline(head+3)
-	/*
-	mes ""+head+" "+wavname(codeline0(head))
-	mes "  "+codeline0(head)
-	mes "  "+codeline1(head)
-	mes "  "+codeline2(head)
-	mes "  "+codeline3(head)
-	//*/
 	return
 
 *fileload
