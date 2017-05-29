@@ -1,0 +1,280 @@
+;
+; コード
+;
+
+*codeload
+	; 音源読み込み
+	dirlist wavlist,"*.wav",1
+	wavnmb = stat
+	mes wavlist
+	
+	split wavlist,"\n",wavname
+	
+	repeat wavnmb
+		split wavname(cnt),".",lit
+		ds_load wavname(cnt),cnt
+		codeHashPush strmid(lit(0),3,5),cnt
+	loop
+	return
+	
+*codeset
+	; 楽譜のセット
+	sdim array,4
+	gosub *fileload ; 楽譜読み込み
+	;dim codeline0
+	;dim codeline1
+	;dim codeline2
+	;dim codeline3
+	dim codeline
+	cnt_s = 0
+	repeat length(array)
+		if array(cnt) != "" & array(cnt) != "----" {
+			;codesetting array(cnt),cnt_s ; 楽譜解釈
+			if array(cnt) = "0" {
+				codeline(cnt_s) = -1
+			}
+			else {
+				codeline(cnt_s) = codeHashPull(array(cnt))
+			}
+			cnt_s ++
+		}
+	loop
+	codelineMax = length(codeline)
+	head = 0
+	return
+/*
+#deffunc codesetting var p1,int p2,local b1,local b2,local b3,local b4
+	; 楽譜解釈
+	; ルート
+	; シャープ化
+	; 和音のタイプ：m,dim,aug
+	; ７音化
+	b2 = strmid(p1,b1,1)
+	if b2 = "_" {
+		b2 = strmid(p1,b1,2)
+		b1 ++
+	}
+	b1 ++
+	b4 = codeHashPull(b2)
+	codeline0(p2) = b4
+	b3 = strmid(p1,b1,1)
+	if b3 = "s" {
+		codeline0(p2) ++
+		b1 ++
+	}
+	b3 = strmid(p1,b1,1)
+	codeline1(p2) = b4+4
+	codeline2(p2) = b4+7
+	codeline3(p2) = -1
+	if b3 = "m" {
+		codeline1(p2) = b4+3
+		codeline2(p2) = b4+7
+		b1 ++
+	}
+	if b3 = "d" {
+		codeline1(p2) = b4+3
+		codeline2(p2) = b4+7
+		b1 += 3
+	}
+	else : if b3 = "a" {
+		codeline1(p2) = b4+4
+		codeline2(p2) = b4+8
+		b1 += 3
+	}
+	b3 = strmid(p1,b1,1)
+	if b3 = "7" {
+		codeline3(p2) = b4+12
+	}
+	return
+	//*/
+	
+*playkey
+	k = iparam
+	;if k = 32 : gosub *nextplay
+	;if k = 32 : gosub *next4play
+	if k = 32 : gosub *codeplay
+	if k = 54 : gosub *codenext
+	if k = 'T' : gosub *next4top
+	if k = 'R' : gosub *codeset
+	/*
+	if k = 'V' : gosub *next3root
+	if k = 'N' : gosub *next5root
+	if k = 'M' : gosub *nextminus
+	//*/
+	if k = 'A' : head += 4 : gosub *mesback
+	if k = 'B' : head -= 4 : gosub *mesback : if head < 0 : head = codelineMax-4
+	return
+	
+*next4play
+	gosub *mesback
+	if codeline(head) >= 0 : ds_play codeline(head)
+	if codeline(head+1) >= 0 : ds_play codeline(head+1)
+	if codeline(head+2) >= 0 : ds_play codeline(head+2)
+	if codeline(head+3) >= 0 : ds_play codeline(head+3)
+	head = (head+4)\codelineMax
+	return
+*codeplay
+	gosub *mesback
+	if codeline(head) >= 0 : ds_play codeline(head)
+	if codeline(head+1) >= 0 : ds_play codeline(head+1)
+	if codeline(head+2) >= 0 : ds_play codeline(head+2)
+	if codeline(head+3) >= 0 : ds_play codeline(head+3)
+	return
+*codenext
+	head = (head+4)\codelineMax
+	gosub *mesback
+	return
+	
+*next4top
+	gosub *mesback
+	top = -1
+	repeat 4
+	if codeline(head+cnt) > top : top = codeline(head+cnt)
+	loop
+	if top >= 0 : ds_play top
+	head = (head+4)\codelineMax
+	return
+	/*
+	/*
+*nextplay
+	; 楽譜の進行
+	; 音を鳴らす
+	ds_play codeline0(head)
+	await 2
+	ds_play codeline1(head)
+	await 2
+	ds_play codeline2(head)
+	if codeline3(head) >= 0 {
+		await 2
+		ds_play codeline3(head)
+	}
+	gosub *mesback ; メッセージ
+	head = (head+1)\codelineMax
+	return
+*next3root
+	; 楽譜の進行
+	; 第１回転音を鳴らす
+	ds_play codeline0(head)+12
+	await 2
+	ds_play codeline1(head)
+	await 2
+	ds_play codeline2(head)
+	if codeline3(head) >= 0 {
+		await 2
+		ds_play codeline3(head)
+	}
+	gosub *mesback ; メッセージ
+	head = (head+1)\codelineMax
+	return
+*next5root
+	; 楽譜の進行
+	; 第２回転音を鳴らす
+	ds_play codeline0(head)+12
+	await 2
+	ds_play codeline1(head)+12
+	await 2
+	ds_play codeline2(head)
+	if codeline3(head) >= 0 {
+		await 2
+		ds_play codeline3(head)
+	}
+	gosub *mesback ; メッセージ
+	head = (head+1)\codelineMax
+	return
+*nextminus
+	; 楽譜の進行
+	; ???を鳴らす
+	ds_play codeline0(head)
+	await 2
+	ds_play codeline1(head)
+	await 2
+	ds_play codeline2(head)
+	if codeline3(head) >= 0 {
+		await 2
+		ds_play codeline3(head)-12
+	}
+	gosub *mesback ; メッセージ
+	head = (head+1)\codelineMax
+	return
+	//*/
+	
+*mesback
+	; メッセージ
+	color 255,255,255
+	boxf 200,0,480,200
+	color 0,0,0
+	pos 200,0
+	mes "code"+int(head/4)+""
+	mes "  "+codeline(head)
+	mes "  "+codeline(head+1)
+	mes "  "+codeline(head+2)
+	mes "  "+codeline(head+3)
+	/*
+	mes ""+head+" "+wavname(codeline0(head))
+	mes "  "+codeline0(head)
+	mes "  "+codeline1(head)
+	mes "  "+codeline2(head)
+	mes "  "+codeline3(head)
+	//*/
+	return
+
+*fileload
+	; ファイル読み込み→arrayに１行ずつ書き込む
+	exist FileName
+	if stat = -1 : return
+	notesel note
+	noteload FileName
+	
+	repeat notemax
+		noteget array(cnt),cnt
+	loop
+	
+	noteunsel
+	return
+	
+*codeHashInit
+	; 連想配列の設定
+	codeHashSize = 839
+	sdim codeHashKey,8,codeHashSize
+	dim  codeHashVal,codeHashSize
+	
+	return
+	
+#deffunc codeHashPush str p1,int p2,local b1
+	b1 = hash(p1)
+	; ハッシュテーブルへの挿入
+	repeat codeHashSize
+		if codeHashKey(b1) = "" {
+			; 空きなら挿入
+			codeHashKey(b1) = p1
+			codeHashVal(b1) = p2
+			break
+		}
+		else {
+			; 埋まってたら次
+			b1 = (b1+1)\codeHashSize
+		}
+	loop
+	return
+	
+#defcfunc codeHashPull str p1,local b1
+	; バリューの取り出し
+	b1 = hash(p1)
+	repeat codeHashSize
+		if codeHashKey(b1) = p1 {
+			break
+		}
+		else {
+			b1 = (b1+1)\codeHashSize
+		}
+	loop
+	return codeHashVal(b1)
+	
+#defcfunc hash str p1,local b1,local b2
+	; ハッシュ関数
+	b1 = 0
+	b2 = p1
+	repeat strlen(p1)
+	b1 = (b1*64+peek(b2,cnt))\codeHashSize
+	loop
+	return b1
