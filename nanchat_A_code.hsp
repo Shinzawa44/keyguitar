@@ -5,7 +5,7 @@
 	gosub *main
 	stop
 
-#define FileName "music3.txt"
+#define FileName "music6.txt"
 #include "code.hsp"
 
 *main
