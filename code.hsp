@@ -61,7 +61,10 @@
 	if k = 'M' : gosub *nextminus
 	//*/
 	if k = 'A' : head += 4 : gosub *mesback
-	if k = 'B' : head -= 4 : gosub *mesback : if head < 0 : head = codelineMax-4
+	if k = 'B' : head -= 4 {
+		if head < 0 : head = codelineMax-4
+		gosub *mesback
+	}
 	return
 	
 *next4play
