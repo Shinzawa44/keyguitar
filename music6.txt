@@ -212,8 +212,8 @@ _Gs
 C
 _Ds
 
-_C
-_Ds
+C
+Ds
 _G
 0
 
