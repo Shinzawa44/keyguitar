@@ -1,8 +1,20 @@
-title "キー入力してください(^^)v"
-onkey *inkey
-onclick *inkey
-stop
-*inkey
-if lparam>>30:stop
-mes iparam
-stop
+
+#include "dsoundex.as"
+
+	ds_init
+	gosub *main
+	stop
+
+#define FileName "music6.txt"
+#include "code.hsp"
+
+*main
+	gosub *codeHashInit	; 連想配列の設定
+	gosub *codeload		; コード読み込み
+	gosub *codeset		; コードを並べる
+	;button gosub "CODE",*nextplay ; 演奏ボタン
+	
+	onkey gosub *playkey ; キー入力
+	;button gosub "reload",*codeset ; 楽譜更新
+	
+	return
