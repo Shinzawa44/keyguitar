@@ -13,7 +13,7 @@
 	dim codeline
 	cnt_s = 0
 	repeat length(array)
-		if array(cnt) != "" & array(cnt) != "----" {
+		if array(cnt) != "" & strmid(array(cnt),0,1) != "#" {
 			;codesetting array(cnt),cnt_s ; Šy•ˆ‰ğß
 			if array(cnt) = "0" {
 				codeline(cnt_s) = -100
@@ -25,7 +25,7 @@
 		}
 	loop
 	codelineMax = length(codeline)
-	head = 0
+	;head = 0
 	return
 	
 *playkey

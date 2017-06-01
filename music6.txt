@@ -1,409 +1,485 @@
+#0
 _Gs
 C
 _Ds
 0
 
+#1
 _As
 D
 _F
 0
 
+#2
 _B
 D
 _F
 0
 
+#3
 _C
 Ds
 _G
 0
 
+#4
 _Ds
 _G
 __As
 0
 
-----
+##----
 
+#5
 _Gs
 C
 _Ds
 0
 
+#6
 _As
 D
 _F
 0
 
+#7
 _C
 Ds
 _G
 0
 
+#8
 _Ds
 _G
 _As
 0
 
+#9
 _G
 _B
 D
 _F
 
-_B
-D
-F
-0
-
-_C
-Ds
-_G
-0
-
-----
-
-_Gs
-C
-_Ds
-0
-
-_As
-D
-_F
-0
-
-_C
-Ds
-_G
-0
-
-_Ds
-_G
-_As
-0
-
-_G
-_B
-D
-_F
-
+#10
 _B
 D
 F
 0
 
+#11
 _C
 Ds
 _G
 0
 
-----
+#----
 
-_C
-Ds
-_G
-0
-
-_F
+#12
 _Gs
 C
 _Ds
+0
 
+#13
 _As
 D
 _F
 0
 
+#14
 _C
 Ds
 _G
 0
 
-----
+#15
+_Ds
+_G
+_As
+0
 
+#16
+_G
+_B
+D
+_F
+
+#17
+_B
+D
+F
+0
+
+#18
 _C
 Ds
 _G
 0
 
+#----
+
+#19
+_C
+Ds
+_G
+0
+
+#20
 _F
 _Gs
 C
 _Ds
 
+#21
 _As
 D
 _F
 0
 
+#22
 _C
 Ds
 _G
 0
 
-----
+#----
 
+#23
 _C
 Ds
 _G
 0
 
+#24
 _F
 _Gs
 C
 _Ds
 
+#25
 _As
 D
 _F
 0
 
+#26
 _C
 Ds
 _G
 0
 
-----
+#----
 
+#27
 _C
 Ds
 _G
 0
 
+#28
 _F
 _Gs
 C
 _Ds
 
+#29
 _As
 D
 _F
 0
 
+#30
 _C
 Ds
 _G
 0
 
-----
+#----
 
-_F
-_Gs
-C
-_Ds
-
+#31
 _C
 Ds
 _G
 0
 
+#32
+_F
 _Gs
 C
 _Ds
-0
 
+#33
 _As
 D
 _F
 0
 
+#34
+_C
+Ds
+_G
+0
+
+#----
+
+#35
 _F
 _Gs
 C
 _Ds
 
+#36
+_C
+Ds
+_G
+0
+
+#37
+_Gs
+C
+_Ds
+0
+
+#38
+_As
+D
+_F
+0
+
+#39
+_F
+_Gs
+C
+_Ds
+
+#40
 C
 Ds
 _G
 0
 
-----
+#----
 
+#41
 _F
 _Gs
 C
 _Ds
 
+#42
 _G
 _As
 D
 _F
 
+#43
 _Gs
 C
 Ds
 0
 
+#44
 _As
 D
 F
 0
 
-----
+#----
 
+#45
 0
 0
 0
 0
 
+#46
 _Gs
 C
 _Ds
 0
 
+#47
 _As
 D
 _F
 0
 
+#48
 C
 Ds
 _G
 0
 
-Ds
-G
+#49
+_Ds
+_G
 _As
 0
 
-----
+#----
 
+#50
 _Gs
 C
 _Ds
 0
 
+#51
 _B
 D
 _F
 0
 
+#52
 C
 Ds
 _G
 0
 
-Ds
-G
+#53
+_Ds
+_G
 _As
 0
 
-----
+#----
 
+#54
 _Gs
 C
 _Ds
 0
 
+#55
 _As
 D
 _F
 0
 
+#56
 C
 Ds
 _G
 0
 
-Ds
-G
+#57
+_Ds
+_G
 _As
 0
 
-----
+#----
 
+#58
 _Gs
 C
 _Ds
 0
 
+#59
 _B
 D
 _F
 0
 
+#60
 C
 Ds
 _G
 0
 
-Ds
-G
+#61
+_Ds
+_G
 _As
 0
 
-----
+#----
 
+#62
 _Gs
 C
 _Ds
 0
 
+#63
 _As
 D
 _F
 0
 
+#64
 _B
 D
 _F
 0
 
+#65
 C
 Ds
 _G
 0
 
+#66
 _B
 Ds
 _Fs
 0
 
+#67
 Cs
 F
 Gs
 0
 
+#68
 Ds
 G
 _As
 0
 
-----
+#----
 
+#69
 _Gs
 C
 _Ds
 0
 
+#70
 _As
 D
 _F
 0
 
+#71
 _C
 Ds
 _G
 0
 
+#72
 _Ds
 _G
 _As
 0
 
+#73
 _G
 _B
 D
 _F
 
+#74
 _B
 D
 F
 0
 
+#75
 _C
 Ds
 _G
 0
 
-----
+#----
