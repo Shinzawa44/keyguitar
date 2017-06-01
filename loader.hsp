@@ -1,0 +1,14 @@
+
+*fileload
+	; ファイル読み込み→arrayに１行ずつ書き込む
+	exist FileName
+	if stat = -1 : return
+	notesel note
+	noteload FileName
+	
+	repeat notemax
+		noteget array(cnt),cnt
+	loop
+	
+	noteunsel
+	return

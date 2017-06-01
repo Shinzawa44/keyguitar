@@ -1,0 +1,50 @@
+
+#include "dsoundex.as"
+
+	ds_init
+	gosub *main
+	stop
+	
+#define FileName "music6.txt"
+
+*main
+	gosub *codeHashInit	; òAëzîzóÒÇÃê›íË
+	sdim array
+	gosub *fileload
+	gosub *toneload
+	objsize 124,20
+	gosub *buttons
+	return
+
+*buttons
+	repeat wavnmb
+	pos cnt/20*124,cnt\20*20
+	button gosub wavname(cnt),*setTone
+	loop
+	return
+	
+*setTone
+	color 255,255,255
+	boxf
+	color 0,0,0
+	pos 364,0
+	mes stat
+	return
+	
+*commit
+	return
+	
+*deleteTone
+	return
+	
+*downShiftTone
+	return
+	
+*upShiftTone
+	return
+	
+*cycleCode
+	return
+
+#include "loader.hsp"
+#include "toneloader.hsp"

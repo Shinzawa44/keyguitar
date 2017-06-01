@@ -7,10 +7,11 @@
 
 #define FileName "music6.txt"
 #include "code.hsp"
+#include "toneloader.hsp"
 
 *main
 	gosub *codeHashInit	; 連想配列の設定
-	gosub *codeload		; コード読み込み
+	gosub *toneload		; 音の読み込み
 	gosub *codeset		; コードを並べる
 	;button gosub "CODE",*nextplay ; 演奏ボタン
 	

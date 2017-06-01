@@ -1,0 +1,67 @@
+
+*toneload
+	; 音源読み込み
+	dir = dir_cur
+	chdir dir+"\\string1" ; 音源のディレクトリ
+	dirlist wavlist,"*.wav",1
+	wavnmb = stat
+	;mes wavlist
+	
+	split wavlist,"\n",wavname
+	
+	repeat wavnmb
+		split wavname(cnt),".",lit
+		ds_load wavname(cnt),cnt
+		codeHashPush strmid(lit(0),3,5),cnt
+	loop
+	
+	chdir dir ; 元のディレクトリ
+	return
+	
+	
+*codeHashInit
+	; 連想配列の設定
+	codeHashSize = 839
+	sdim codeHashKey,8,codeHashSize
+	dim  codeHashVal,codeHashSize
+	
+	return
+	
+#deffunc codeHashPush str p1,int p2,local b1
+	b1 = hash(p1)
+	; ハッシュテーブルへの挿入
+	repeat codeHashSize
+		if codeHashKey(b1) = "" {
+			; 空きなら挿入
+			codeHashKey(b1) = p1
+			codeHashVal(b1) = p2
+			break
+		}
+		else {
+			; 埋まってたら次
+			b1 = (b1+1)\codeHashSize
+		}
+	loop
+	return
+	
+#defcfunc codeHashPull str p1,local b1
+	; バリューの取り出し
+	b1 = hash(p1)
+	repeat codeHashSize
+		if codeHashKey(b1) = p1 {
+			break
+		}
+		else {
+			b1 = (b1+1)\codeHashSize
+		}
+	loop
+	return codeHashVal(b1)
+	
+#defcfunc hash str p1,local b1,local b2
+	; ハッシュ関数
+	b1 = 0
+	b2 = p1
+	repeat strlen(p1)
+	b1 = (b1*64+peek(b2,cnt))\codeHashSize
+	loop
+	return b1
