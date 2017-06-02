@@ -37,6 +37,7 @@
 	if k = 51 : gosub *codenext
 	if k = 46 : gosub *codenext
 	if k = 13 : gosub *codenext
+	if k = 'N' : gosub *codenext
 	if k = 'T' : gosub *next4top
 	if k = 'R' : gosub *codeset
 	/*
