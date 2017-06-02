@@ -4,48 +4,18 @@
 	ds_init
 	gosub *main
 	stop
-	
-#define FileName "music7.txt"
+
+#define FileName "music6.txt"
+#include "code.hsp"
+#include "toneloader.hsp"
 
 *main
 	gosub *codeHashInit	; 連想配列の設定
-	sdim array
-	gosub *fileload
-	gosub *toneload
-	objsize 124,20
-	gosub *buttons
-	return
-
-*buttons
-	repeat wavnmb
-	pos cnt/12*124,cnt\12*20
-	button gosub wavname(cnt),*setTone
-	loop
-	return
+	gosub *toneload		; 音の読み込み
+	gosub *codeset		; コードを並べる
+	;button gosub "CODE",*nextplay ; 演奏ボタン
 	
-*setTone
-	color 255,255,255
-	boxf
-	color 0,0,0
-	pos 364,0
-	mes stat
-	ds_play stat
-	return
+	onkey gosub *playkey ; キー入力
+	;button gosub "reload",*codeset ; 楽譜更新
 	
-*commit
 	return
-	
-*deleteTone
-	return
-	
-*downShiftTone
-	return
-	
-*upShiftTone
-	return
-	
-*cycleCode
-	return
-
-#include "loader.hsp"
-#include "toneloader.hsp"
