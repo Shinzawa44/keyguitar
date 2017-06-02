@@ -5,7 +5,7 @@
 	gosub *main
 	stop
 	
-#define FileName "music6.txt"
+#define FileName "music7.txt"
 
 *main
 	gosub *codeHashInit	; ˜A‘z”z—ñ‚Ìİ’è
@@ -18,7 +18,7 @@
 
 *buttons
 	repeat wavnmb
-	pos cnt/20*124,cnt\20*20
+	pos cnt/12*124,cnt\12*20
 	button gosub wavname(cnt),*setTone
 	loop
 	return
@@ -29,6 +29,7 @@
 	color 0,0,0
 	pos 364,0
 	mes stat
+	ds_play stat
 	return
 	
 *commit
