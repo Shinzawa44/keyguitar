@@ -6,15 +6,10 @@
 	; 楽譜のセット
 	sdim array,4
 	gosub *fileload ; 楽譜読み込み
-	;dim codeline0
-	;dim codeline1
-	;dim codeline2
-	;dim codeline3
 	dim codeline
 	cnt_s = 0
 	repeat length(array)
 		if array(cnt) != "" & strmid(array(cnt),0,1) != "#" {
-			;codesetting array(cnt),cnt_s ; 楽譜解釈
 			if array(cnt) = "0" {
 				codeline(cnt_s) = -100
 			}
@@ -25,26 +20,24 @@
 		}
 	loop
 	codelineMax = length(codeline)
-	;head = 0
 	return
 	
 *playkey
 	k = iparam
-	;if k = 32 : gosub *nextplay
-	;if k = 32 : gosub *next4play
 	if k = 32 : gosub *codeplay
 	if k = 54 : gosub *codenext
 	if k = 51 : gosub *codenext
 	if k = 46 : gosub *codenext
 	if k = 13 : gosub *codenext
+	
+	if k = 'E' : gosub *strokeauto
+	if k = 'D' : gosub *strokeplay
+	if k = 'C' : gosub *strokeplay
+	
 	if k = 'N' : gosub *codenext
 	if k = 'T' : gosub *next4top
 	if k = 'R' : gosub *codeset
-	/*
-	if k = 'V' : gosub *next3root
-	if k = 'N' : gosub *next5root
-	if k = 'M' : gosub *nextminus
-	//*/
+	
 	if k = 'A' : head += 4 : gosub *mesback
 	if k = 'B' : head -= 4 {
 		if head < 0 : head = codelineMax-4
@@ -86,6 +79,7 @@
 	return
 *codenext
 	head = (head+4)\codelineMax
+	stroke_head = 0
 	gosub *mesback
 	return
 	
@@ -97,6 +91,25 @@
 	loop
 	if top >= 0 : ds_play top
 	head = (head+4)\codelineMax
+	return
+	
+*strokeauto
+	onkey 0
+	await 1
+	repeat 8
+	gosub *strokeplay
+	await 136
+	loop
+	gosub *codenext
+	onkey 1
+	return
+	
+*strokeplay
+	; ストローク
+	stroke_head = (stroke_head+1)\8
+	if stroke_head = 2 : return
+	if stroke_head = 5 : return
+	gosub *codeplay
 	return
 	
 *mesback
