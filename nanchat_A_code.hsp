@@ -15,6 +15,7 @@
 	gosub *codeset		; コードを並べる
 	;button gosub "CODE",*nextplay ; 演奏ボタン
 	
+	gosub *strokeauto0 ; 慣らし音
 	onkey gosub *playkey ; キー入力
 	;button gosub "reload",*codeset ; 楽譜更新
 	
