@@ -96,7 +96,7 @@
 	head = (head+4)\codelineMax
 	return
 	
-#define TEMPO await 140
+#define TEMPO await 156
 	
 *strokeauto0
 	onkey 0
