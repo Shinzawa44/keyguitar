@@ -1,24 +1,24 @@
 #0
-_Gs
-C
+__Gs
+_C
 _Ds
 0
 
 #1
-_As
-D
+__As
+_D
 _F
 0
 
 #2
-_B
-D
+__B
+_D
 _F
 0
 
 #3
-C
-Ds
+_C
+_Ds
 _G
 0
 
@@ -31,44 +31,44 @@ _As
 ##----
 
 #5
-_Gs
-C
+__Gs
+_C
 _Ds
 0
 
 #6
-_As
-D
+__As
+_D
 _F
 0
 
 #7
-_C
-Ds
+__C
+_Ds
 _G
 0
 
 #8
-_Ds
-_G
+__Ds
+__G
 _As
 0
 
 #9
-_G
-_B
-D
+__G
+__B
+_D
 _F
 
 #10
-_B
-D
-F
+__B
+_D
+_F
 0
 
 #11
 _C
-Ds
+__Ds
 _G
 0
 

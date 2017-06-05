@@ -66,12 +66,8 @@
 	return
 	
 *next4play
-	gosub *mesback
-	if codeline(head) >= 0 : ds_play codeline(head)
-	if codeline(head+1) >= 0 : ds_play codeline(head+1)
-	if codeline(head+2) >= 0 : ds_play codeline(head+2)
-	if codeline(head+3) >= 0 : ds_play codeline(head+3)
-	head = (head+4)\codelineMax
+	gosub *codeplay
+	gosub *codenext
 	return
 *codeplay
 	gosub *mesback
@@ -79,6 +75,9 @@
 	if codeline(head+1) >= 0 : ds_play codeline(head+1)
 	if codeline(head+2) >= 0 : ds_play codeline(head+2)
 	if codeline(head+3) >= 0 : ds_play codeline(head+3)
+	; 6 strings
+	if codeline(head) >= 0 : ds_play codeline(head)+12
+	if codeline(head+1) >= 0 : ds_play codeline(head+1)+12
 	return
 *codenext
 	head = (head+4)\codelineMax
@@ -192,6 +191,9 @@
 	mes "  "+codeline(head+1)
 	mes "  "+codeline(head+2)
 	mes "  "+codeline(head+3)
+	; 6 strings
+	mes "  "+int(codeline(head)+12)
+	mes "  "+int(codeline(head+1)+12)
 	return
 	
 #include "loader.hsp"
