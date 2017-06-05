@@ -23,9 +23,9 @@ _G
 0
 
 #4
+__As
 _Ds
 _G
-_As
 0
 
 ##----
@@ -75,44 +75,44 @@ _G
 #----
 
 #12
-_Gs
-C
+__Gs
+_C
 _Ds
 0
 
 #13
-_As
-D
+__As
+_D
 _F
 0
 
 #14
-_C
-Ds
+__C
+_Ds
 _G
 0
 
 #15
-_Ds
-_G
+__Ds
+__G
 _As
 0
 
 #16
-_G
-_B
-D
+__G
+__B
+_D
 _F
 
 #17
-_B
-D
-F
+__B
+_D
+_F
 0
 
 #18
 _C
-Ds
+__Ds
 _G
 0
 
@@ -120,25 +120,25 @@ _G
 
 #19
 _C
-Ds
+_Ds
 _G
 0
 
 #20
-_F
-_Gs
-C
+__Gs
+_C
 _Ds
+_F
 
 #21
-_As
-D
+__As
+_D
 _F
 0
 
 #22
 _C
-Ds
+_Ds
 _G
 0
 
@@ -146,25 +146,25 @@ _G
 
 #23
 _C
-Ds
+_Ds
 _G
 0
 
 #24
-_F
-_Gs
-C
+__Gs
+_C
 _Ds
+_F
 
 #25
-_As
-D
+__As
+_D
 _F
 0
 
 #26
 _C
-Ds
+_Ds
 _G
 0
 
@@ -172,64 +172,63 @@ _G
 
 #27
 _C
-Ds
+_Ds
 _G
 0
 
 #28
-_F
-_Gs
-C
+__Gs
+_C
 _Ds
+_F
 
 #29
-_As
-D
+__As
+_D
 _F
 0
 
 #30
 _C
-Ds
+_Ds
 _G
 0
-
 #----
 
 #31
 _C
-Ds
+_Ds
 _G
 0
 
 #32
-_F
-_Gs
-C
+__Gs
+_C
 _Ds
+_F
 
 #33
-_As
-D
+__As
+_D
 _F
 0
 
 #34
 _C
-Ds
+_Ds
 _G
 0
 
 #----
 
 #35
-_F
-_Gs
-C
+__Gs
+_C
 _Ds
+_F
 
 #36
-C
+_C
 _Ds
 _G
 0
